@@ -29,6 +29,8 @@
 .packages
 .pub-cache/
 .pub/
+pubspec.yaml
+android/gradle/wrapper/gradle-wrapper.properties
 /build/
 
 # Web related
