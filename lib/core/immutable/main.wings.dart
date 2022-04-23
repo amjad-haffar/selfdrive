@@ -21,7 +21,7 @@ class Wings {
   }
 
   WingsLanguage defaultLanguage = WingsLanguage(
-    locale: const Locale('ar', 'ye'),
+    locale: const Locale('en', 'ar'),
     textDirection: TextDirection.rtl,
   );
 

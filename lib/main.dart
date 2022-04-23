@@ -20,14 +20,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
-
-      translationsKeys: TranslationMapper.keys,
+      // translationsKeys: TranslationMapper.keys,
+      
       // get the current language text direction
       textDirection: Wings.language.currentLanguage.textDirection,
       // get the current language locale
-      locale: Wings.language.currentLanguage.locale,
-      fallbackLocale: Wings.language.currentLanguage.locale,
+      // locale: Wings.language.currentLanguage.locale,
 
+      // fallbackLocale: Wings.language.currentLanguage.locale,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
