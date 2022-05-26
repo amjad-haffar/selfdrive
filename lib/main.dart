@@ -1,37 +1,43 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wings/core/immutable/main.wings.dart';
-import 'package:wings/features/index/view/index.view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wings/core/immutable/utils/screen_util.wings.dart';
+import 'dart:ui';
+import 'core/immutable/utils/constants.dart';
+import 'features/Views/DestinationList.dart';
 
-import 'core/mutable/translations/languages/translation.mapper.dart';
-
+late SharedPreferences sharedPreferences;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Wings.init();
-
+  sharedPreferences = await SharedPreferences.getInstance();
+  await dotenv.load(fileName: "assets/config/.env");
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      // translationsKeys: TranslationMapper.keys,
+    double screenwidth = window.physicalSize.width;
+    return ScreenUtilInit(
+      designSize: const Size(360, 640),
+      builder: (context) => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'App flutter',
+        theme: ThemeData(
+            primarySwatch: Colors.blue,
+            // responsive text size
+            // textTheme: screenwidth >= 500 ? TEXT_DEF : TEXT_SMALL,
+            textTheme: TEXT_DEF),
+        // home: IndexView(),
+        home: 
+          DestinationsPage()),
+        
       
-      // get the current language text direction
-      textDirection: Wings.language.currentLanguage.textDirection,
-      // get the current language locale
-      // locale: Wings.language.currentLanguage.locale,
-
-      // fallbackLocale: Wings.language.currentLanguage.locale,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: IndexView(),
     );
   }
 }

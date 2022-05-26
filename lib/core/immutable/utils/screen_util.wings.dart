@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 class ScreenUtil {
   static ScreenUtil? _instance;
+  final BuildContext? cont;
 
   static ScreenUtil get instance {
     _instance ??= ScreenUtil();
@@ -10,11 +11,11 @@ class ScreenUtil {
     return _instance!;
   }
 
-  int width;
-  int height;
+  double width;
+  double height;
   bool allowFontScaling;
 
-  MediaQueryData? _mediaQueryData;
+  late MediaQueryData mediaQueryData;
   double _screenWidth = 0;
   double _screenHeight = 0;
   double _screenHeightNoPadding = 0;
@@ -26,6 +27,7 @@ class ScreenUtil {
   Orientation _orientation = Orientation.portrait;
 
   ScreenUtil({
+    @required this.cont,
     this.width = 1080,
     this.height = 1920,
     this.allowFontScaling = false,
@@ -38,8 +40,8 @@ class ScreenUtil {
   }
 
   void _init() {
-    MediaQueryData mediaQuery = Get.mediaQuery;
-    _mediaQueryData = mediaQuery;
+    MediaQueryData mediaQuery = MediaQuery.of(cont!);
+    mediaQueryData = mediaQuery;
     _pixelRatio = mediaQuery.devicePixelRatio;
     _screenWidth = mediaQuery.size.width;
     _screenHeight = mediaQuery.size.height;
@@ -53,7 +55,7 @@ class ScreenUtil {
         _screenHeightNoPadding - AppBar().preferredSize.height;
   }
 
-  MediaQueryData get mediaQueryData => _mediaQueryData!;
+  MediaQueryData get mmediaQueryData => mediaQueryData;
 
   double get textScaleFactory => _textScaleFactor;
 
@@ -90,4 +92,6 @@ class ScreenUtil {
   setSp(int fontSize) => allowFontScaling
       ? setWidth(fontSize)
       : setWidth(fontSize) / _textScaleFactor;
+
+
 }
