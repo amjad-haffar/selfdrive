@@ -4,62 +4,57 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:wings/core/immutable/utils/constants.dart';
 import 'package:wings/core/immutable/utils/sampledata.dart';
 import 'package:wings/core/immutable/utils/widgets.dart';
 import 'package:wings/features/Controllers/DestList.dart';
 import 'package:wings/features/Views/desDetails.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+
 class DestinationsPage extends StatelessWidget {
-  int _page = 0;
-  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final DestListCrtl cont = Get.put(DestListCrtl());
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     return SafeArea(
       child: Scaffold(
-      
         bottomNavigationBar: GNav(
-          
-          // haptic: true, // haptic feedback
-          tabBorderRadius: 25, 
-          // tabActiveBorder: Border.all(color: Colors.black, width: 1), // tab button border
-          tabBorder: Border.all(color: Colors.grey.shade800,), // tab button border
-          // tabShadow: [BoxShadow(color: Colors.grey.withOpacity(0.5), blurRadius: 8)], // tab button shadow
-          curve: Curves.easeOutExpo, // tab animation curves
-          duration: Duration(milliseconds: 400), // tab animation duration
-          gap: 8, // the tab button gap between icon and text 
-          color: Colors.white, // unselected icon color
-          activeColor: Colors.white, // selected icon and text color
-          iconSize: 24, // tab button icon size
-          backgroundColor: Colors.black,
-          tabBackgroundColor:Colors.grey.shade800 ,
-           // selected tab background color
-          padding: EdgeInsets.all(16),
-           // navigation bar padding
-           
-          tabs: [
-
-           
-    GButton(
-      icon: LineIcons.home,
-      text: 'Home',
-    ),
-    GButton(
-      icon: LineIcons.accessibleIcon,
-      text: 'Likes',
-    ),
-    GButton(
-      icon: LineIcons.search,
-      text: 'Search',
-    ),
-    GButton(
-      icon: LineIcons.user,
-      text: 'Profile',
-    )
-  ]
-),
+            // haptic: true, // haptic feedback
+            tabBorderRadius: 25,
+            // tabActiveBorder: Border.all(color: Colors.black, width: 1), // tab button border
+            // tabBorder: Border.all(color: Colors.grey.shade100,), // tab button border
+            // tabShadow: [BoxShadow(color: Colors.grey.withOpacity(0.5), blurRadius: 8)], // tab button shadow
+            curve: Curves.easeOutExpo, // tab animation curves
+            duration: Duration(milliseconds: 400), // tab animation duration
+            gap: 8, // the tab button gap between icon and text
+            color: primarycolor, // unselected icon color
+            activeColor: Colors.white, // selected icon and text color
+            iconSize: 24, // tab button icon size
+            backgroundColor: Colors.white,
+            tabBackgroundColor: primarycolor,
+            style: GnavStyle.google,
+            padding: EdgeInsets.all(15),
+            tabMargin: EdgeInsets.all(8),
+            // navigation bar padding
+            tabs: [
+              GButton(
+                icon: LineIcons.home,
+                text: 'Home',
+              ),
+              GButton(
+                icon: Icons.settings,
+                text: 'Likes',
+              ),
+              GButton(
+                icon: Icons.location_pin,
+                text: 'Search',
+              ),
+              GButton(
+                icon: LineIcons.user,
+                text: 'Profile',
+              )
+            ]),
         body: Container(
             padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: Stack(
@@ -72,7 +67,7 @@ class DestinationsPage extends StatelessWidget {
                         style: themeData.textTheme.headline1),
                     addVerBox(15.h),
                     Container(
-                      height: 40.h,
+                      height: 45.h,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15.r),
                           color: Colors.grey[200]),
@@ -87,31 +82,34 @@ class DestinationsPage extends StatelessWidget {
                             errorBorder: InputBorder.none,
                             disabledBorder: InputBorder.none,
                             contentPadding: EdgeInsets.only(
-                                left: 15.w, bottom: 8.h, top: 8.h, right: 15.w),
+                                left: 15.w, bottom: 10.h, top: 14.h, right: 15.w),
                             hintText: "Search"),
                       ),
                     ),
                     addVerBox(15.h),
                     SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children:
-                              //choices data change to list later
-                              [
-                            "All",
-                            "museum",
-                            "castle",
-                            "restaurant",
-                            "special area",
-                            "mountain",
-                            "food",
-                            "city",
-                          ]
-                                  .map((filter) => Choiceoption(
-                                        textdata: filter,
-                                      ))
-                                  .toList(),
-                        )),
+                      child: Container(
+                          height: 45.h,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: cont.filters.length,
+                            itemBuilder: (context, index) {
+                              return Choiceoption(
+                                textdata: cont.filters[index],
+                                index: index,
+                                cont: cont,
+                              );
+                            }),
+                      ),
+                    ),
+                    
+                    //choices data change to list later
+                    // cont.filters
+                    //     .map((filter) => Choiceoption(
+                    //           textdata: filter,
+                    //         ))
+                    //     .toList(),
+
                     // scrollDirection: Axis.vertical,
                     // child:
                     addVerBox(14.h),
@@ -132,21 +130,21 @@ class DestinationsPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                Positioned(
-                    bottom: 20,
-                    width: ScreenUtil().screenWidth,
-                    child: Visibility(
-                      maintainAnimation: true,
-                      maintainState: true,
-                      visible: true,
-                      child: Center(
-                        child: Optionbutton(
-                          icon: Icons.map_rounded,
-                          text: "Create Tour",
-                          width: 180.w,
-                        ),
-                      ),
-                    )),
+                // Positioned(
+                //     bottom: 20,
+                //     width: ScreenUtil().screenWidth,
+                //     child: Visibility(
+                //       maintainAnimation: true,
+                //       maintainState: true,
+                //       visible: true,
+                //       child: Center(
+                //         child: Optionbutton(
+                //           icon: Icons.map_rounded,
+                //           text: "Create Tour",
+                //           width: 180.w,
+                //         ),
+                //       ),
+                //     )),
               ],
             )),
       ),
@@ -187,27 +185,43 @@ class DestinationsPage extends StatelessWidget {
 }
 
 class Choiceoption extends StatelessWidget {
-  const Choiceoption({Key? key, this.textdata}) : super(key: key);
-  final String? textdata;
-
+  const Choiceoption({Key? key, required this.textdata, required this.index, required this.cont})
+      : super(key: key);
+  final String textdata;
+  final int index;
+  final DestListCrtl cont;
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.r), color: Colors.grey[300]),
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 13.h),
-      margin: EdgeInsets.only(left: 12.w),
-      child: Text(
-        textdata!,
-        style: themeData.textTheme.headline5,
-      ),
+    return  
+      InkWell(
+          onTap: () {
+            cont.selectfilter(index);
+          },
+          child: 
+            Obx(()=>
+               Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.r), color: cont.selected[index] ? primarycolor:Colors.grey[300]),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 13.h),
+                margin: EdgeInsets.only(left: 12.w),
+                child: Text(
+                  textdata,
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                    color:  cont.selected[index]? Colors.white: Colors.black87,
+                  ),
+                ),
+              ),
+            ),
     );
   }
 }
 
 class Destiantionswidet extends StatelessWidget {
-  const Destiantionswidet({Key? key, this.itemdata, this.index,required this.cont})
+  const Destiantionswidet(
+      {Key? key, this.itemdata, this.index, required this.cont})
       : super(key: key);
   final dynamic itemdata;
   final dynamic index;
@@ -224,17 +238,17 @@ class Destiantionswidet extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () => {
-                  Get.to(()=> DestDetails(),arguments:itemdata ),
-                  },
+                  Get.to(() => DestDetails(), arguments: itemdata),
+                },
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.r),
+                      borderRadius: BorderRadius.circular(16.r),
                       boxShadow: [
                         BoxShadow(
                             color: Colors.grey[400]!,
                             blurRadius: 10,
                             spreadRadius: 3,
-                            offset: Offset(0, 6))
+                            offset: Offset(0,0))
                       ]),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15.r),
@@ -244,48 +258,39 @@ class Destiantionswidet extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                top: 15.w,
-                right: 15.w,
-                child:
-                    // Borderbox(
-                    //   hight: 45.h,
-                    //   width: 45.w,
-                    // child:
-                    InkWell(
-                  onTap: () => {
-                    
-                  },
-                  child: Container(
-                      decoration:
-                          BoxDecoration(shape: BoxShape.circle, boxShadow: [
-                        BoxShadow(
-                          color: Colors.black54,
-                          blurRadius: 10.0,
-                        ),
-                      ]),
-                      child: InkWell(
-                        onTap: () => {cont.selecting(index)},
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(25.r)),
-                          child: Obx(()=> Icon(
-                              cont.destselected.contains(index)? Icons.block: Icons.check,
-                              color: 
-                              cont.destselected.contains(index)? Colors.red: Colors.green,
-                              size: 36.r,
-                            ),
-                          ),
-                        ),
-                      )),
-                ),
-                // Icon(
-                //   Icons.location_pin,
-                //   color: Colors.black54,
-                // ),
-              ),
-              // )
+              // Positioned(
+              //   top: 15.w,
+              //   right: 15.w,
+              //   child:
+              //       // Borderbox(
+              //       //   hight: 45.h,
+              //       //   width: 45.w,
+              //       // child:
+              //       InkWell(
+              //     onTap: () => {},
+              //     child: Container(
+              //         decoration:
+              //             BoxDecoration(shape: BoxShape.circle, boxShadow: [
+              //           BoxShadow(
+              //             color: Colors.black54,
+              //             blurRadius: 10.0,
+              //           ),
+              //         ]),
+              //         child: InkWell(
+              //           onTap: () => {cont.selecting(index)},
+              //           child: Container(
+              //             decoration: BoxDecoration(
+              //                 color: Colors.white,
+              //                 borderRadius: BorderRadius.circular(25.r)),
+              //             child: Obx(
+              //               () => Icon(
+              //                 cont.destselected.contains(index)
+              //                     ? Icons.block
+              //                     : Icons.check,
+              //                 color: cont.destselected.contains(index)
+              //                     ? Colors.red
+              //                     : Colors.green,
+              //                 size: 36.r,
               Positioned(
                   bottom: 15.w,
                   left: 15.w,
@@ -302,7 +307,6 @@ class Destiantionswidet extends StatelessWidget {
                   ))
             ],
           ),
-          addVerBox(15.h),
           // Row(
           //   children: [
           //     Text(
@@ -318,12 +322,11 @@ class Destiantionswidet extends StatelessWidget {
 }
 
 class Optionbutton extends StatelessWidget {
-  const Optionbutton({Key? key, this.text, this.icon, this.width})
+  const Optionbutton({Key? key, required this.text, required this.icon, this.width})
       : super(key: key);
-  final String? text;
-  final IconData? icon;
+  final String text;
+  final IconData icon;
   final double? width;
-
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -342,7 +345,7 @@ class Optionbutton extends StatelessWidget {
             ),
             addhorBox(10.w),
             Text(
-              text!,
+              text,
               style: TextStyle(color: Colors.white),
             )
           ],

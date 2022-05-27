@@ -7,8 +7,18 @@ import 'package:wings/features/Models/Model.dart';
 
 class DestListCrtl extends GetxController {
   List<Destinations> desList = [];
-  late Destinations selected;
-  var destselected = [].obs;
+  dynamic destselected = [].obs;
+  List<String> filters = [
+    "All",
+    "museum",
+    "castle",
+    "restaurant",
+    "special area",
+    "mountain",
+    "food",
+    "city",
+  ].obs;
+  List<bool> selected = [true, false, false, false, false, false, false, false].obs;
 
   selecting(int index) {
     if (destselected.contains(index)) {
@@ -18,6 +28,17 @@ class DestListCrtl extends GetxController {
     }
   }
 
+  selectfilter(int x) {
+    int z = 0;
+    while (z != selected.length) {
+      {
+        selected[z] = false;
+        z++;
+      }
+    }
+    print(selected.toString());
+    selected[x] = true;
+  }
   // static DestListCrtl get cont => Get.find<DestListCrtl>();
   // fetchalldest() async {
   //   desList = await repo.getAllDestList("url");
