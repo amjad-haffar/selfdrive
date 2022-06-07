@@ -6,20 +6,6 @@ import 'package:wings/api/APIurls.dart';
 import 'package:wings/features/Models/Model.dart';
 
 Logger logger = Logger();
-// Dio client() {
-//   Dio dio = Dio();
-//   Options diooptions = Options();
-//   dio.options.baseUrl = "https://localhost.com";
-//   dio.options.headers['Authoriation'] = "key";
-//   dio.options.connectTimeout = 20000;
-//   dio.interceptors.add(InterceptorsWrapper(
-//     onRequest: (options, handler) => requestInterceptor(options),
-//     onResponse: (Response r, handler) => resInterceptor(r),
-//     onError: (e, handler) => errorInterceptor(e),
-//   ));
-
-//   return dio;
-// }
 
 requestInterceptor(RequestOptions options) {
   logger.d(options);
@@ -38,7 +24,7 @@ resInterceptor(Response res) {
 }
 class RequestDio{
   static Future<Response> getHttps(String url, var data, Duration maxStale,
-      {String method = 'POST', String? apiToken}) async {
+      String method ,{ String? apiToken}) async {
     BaseOptions options = BaseOptions(
         baseUrl: Server,
         connectTimeout: 50000,
@@ -55,7 +41,7 @@ class RequestDio{
       "Content-type": "application/json",
       "Accept": "application/json",
       // TODO
-      "Authorization": "Bearer " + apiToken.toString() 
+      "Authorization": "Bearer " + apiToken!
     };
     try {
       Response response = await dio.request(
@@ -76,8 +62,9 @@ class RequestDio{
     }
     
   }
-  static Future<dynamic> callAPI(String url, var body,
-      {String method = 'POST',
+  static Future<dynamic> callAPI(String url, var body,String method,
+      {
+        // String method = 'POST',
       String apiToken = '',
       Duration maxStale = const Duration(days: 7)}) async {
 
@@ -87,7 +74,7 @@ class RequestDio{
 
     try {
       Response r = await getHttps(url, body, maxStale,
-          method: method, apiToken: apiToken);
+           method, apiToken: apiToken);
       // print('response = '+r.toString());
 
       Map<String, dynamic> data= Map();
@@ -130,3 +117,17 @@ class RequestDio{
   }
 }
 
+// Dio client() {
+//   Dio dio = Dio();
+//   Options diooptions = Options();
+//   dio.options.baseUrl = "https://localhost.com";
+//   dio.options.headers['Authoriation'] = "key";
+//   dio.options.connectTimeout = 20000;
+//   dio.interceptors.add(InterceptorsWrapper(
+//     onRequest: (options, handler) => requestInterceptor(options),
+//     onResponse: (Response r, handler) => resInterceptor(r),
+//     onError: (e, handler) => errorInterceptor(e),
+//   ));
+
+//   return dio;
+// }

@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wings/core/immutable/utils/constants.dart';
-import 'package:wings/core/immutable/utils/widgets.dart';
+import 'package:wings/utils/components/constants.dart';
+import 'package:wings/utils/components/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:wings/features/Controllers/DestList.dart';
 class DestDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    dynamic data = Get.arguments;
+  dynamic data = Get.arguments[0];
+  int index = Get.arguments[1];
+  final DestListCrtl cont = Get.put(DestListCrtl());
     final ThemeData themeData = Theme.of(context);
     return SafeArea(
       child: Scaffold(
@@ -62,12 +65,15 @@ class DestDetails extends StatelessWidget {
                           children: [
                             Text("Rating: ",style: themeData.textTheme.headline3,),
                             RatingBar.builder(
+                              unratedColor: Colors.grey[400],
                               itemSize: 25.r,
                               initialRating: 3,
                               minRating: 1,
                               direction: Axis.horizontal,
+                              
                               // allowHalfRating: true,
                               itemCount: 5,
+                              
                               // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
                               itemBuilder: (context, _) => Icon(
                                 Icons.star,
@@ -133,31 +139,36 @@ class DestDetails extends StatelessWidget {
                       children: [
                         Text(
                           "200\$",
-                          style: TextStyle(fontSize: 24.sp,color: Colors.black87),
+                          style: TextStyle(fontSize: 24.sp,color: Colors.black87,fontWeight: FontWeight.bold),
                         ),
                         InkWell(
                           onTap: () => {
+                            cont.togglebool()
                           },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(16.r)),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  top: 12.h, bottom: 12.h, left: 14.w, right: 18.w),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                  ),
-                                  addhorBox(6.w),
-                                  Text("Select",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20.sp,
-                                      )),
-                                ],
+                          child: Obx(()=>
+                            Container(
+                              width: 120.w,
+                              decoration: BoxDecoration(
+                                  color: cont.togglesecet.value?Colors.black: Appthem().primarycolor,
+                                  borderRadius: BorderRadius.circular(16.r)),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    top: 12.h, bottom: 12.h),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    // Icon(
+                                    //   Icons.add,
+                                    //   color: Colors.white,
+                                    // ),
+                                    Text(
+                                      cont.togglesecet.value? "Delete":"Add",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20.sp,
+                                        )),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

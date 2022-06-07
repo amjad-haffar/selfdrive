@@ -8,6 +8,7 @@ import 'package:wings/features/Models/Model.dart';
 class DestListCrtl extends GetxController {
   List<Destinations> desList = [];
   dynamic destselected = [].obs;
+  RxBool togglesecet = false.obs;
   List<String> filters = [
     "All",
     "museum",
@@ -18,13 +19,22 @@ class DestListCrtl extends GetxController {
     "food",
     "city",
   ].obs;
-  List<bool> selected = [true, false, false, false, false, false, false, false].obs;
+  List<bool> selected =
+      [true, false, false, false, false, false, false, false].obs;
 
   selecting(int index) {
     if (destselected.contains(index)) {
       destselected.remove(index);
     } else {
       destselected.add(index);
+    }
+  }
+
+  togglebool() {
+    if (togglesecet.value) {
+      togglesecet.value = false;
+    } else {
+      togglesecet.value = true;
     }
   }
 

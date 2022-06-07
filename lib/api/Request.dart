@@ -17,7 +17,7 @@ class Request {
   static Future<List<T>> getAllModel<T>(String url, JsonDecoder<T> fromJson,) async {
     var body = {};
     var data =
-        await RequestDio.callAPI(url, body, method: 'GET', apiToken: "token");
+        await RequestDio.callAPI(url, body, 'GET', apiToken: "token");
 
     List<T> objects = List.empty();
 
