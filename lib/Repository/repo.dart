@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:wings/api/Request.dart';
 import 'package:wings/api/client.dart';
-import 'package:wings/features/Models/Destinations.dart';
 
 class Repository {
   // late?
