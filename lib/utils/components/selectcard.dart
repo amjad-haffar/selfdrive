@@ -26,12 +26,12 @@ class SelectCard extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 blurRadius: 6,
-                color: Color(0xffededed),
+                color: Appthem().shadow,
                 spreadRadius: 2,
               ),
             ],
             //  color: Color(0xfff3f3f3),
-            color: Colors.white,
+            color: Appthem().tourcard,
             borderRadius: BorderRadius.circular(12.r)),
         child: Row(
           children: [
@@ -42,15 +42,6 @@ class SelectCard extends StatelessWidget {
                   style:
                       TextStyle(fontSize: 28.sp, color: Appthem().primarycolor),
                 )
-                //  ClipRRect(
-                //   borderRadius: BorderRadius.circular(8.r),
-                //   child:
-                //   Image.asset(
-                //     "assets/images/1.jpg",
-                //     height: 100.h,
-                //     fit: BoxFit.cover,
-                //   ),
-                // ),
                 ),
             Padding(
                 padding: EdgeInsets.symmetric(
@@ -65,7 +56,11 @@ class SelectCard extends StatelessWidget {
                       Text(dest.destination,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
-                          style: themeData.textTheme.headline4),
+                          style: TextStyle(
+          fontSize: 18.sp,
+          color: Appthem().black,
+          fontWeight: FontWeight.bold,
+        ),),
                       Appthem().addVerBox(8.h),
                       Text(
                         'Price : \$100',
@@ -87,7 +82,7 @@ class SelectCard extends StatelessWidget {
               child: Center(
                 child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.white, shape: BoxShape.circle),
+                        color: Appthem().tourcard, shape: BoxShape.circle),
                     child: Icon(
                       Icons.close,
                       size: 33.r,

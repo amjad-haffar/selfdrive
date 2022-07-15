@@ -61,13 +61,7 @@ Future<int> getDirectionsAPIResponse(
       await Request.getdrivingRouteUsingMapbox(sourceLatLng, destinationLatLng);
   // Map geometry = response['routes'][0]['geometry'];
   int distance = response['routes'][0]['distance'];
-
-  // Map modifiedResponse = {
-  //   "geometry": geometry,
-  //   "duration": duration,
-  //   "distance": distance,
-  // };
-  return distance;
+  return (distance / 1000).round();
 }
 
 LatLng getCenterCoordinatesForPolyline(Map geometry) {

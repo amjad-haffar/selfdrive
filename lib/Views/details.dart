@@ -16,6 +16,7 @@ class DestDetails extends StatelessWidget {
     tour.search(data);
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Appthem().background,
         body: Container(
           child: Stack(
             children: [
@@ -79,7 +80,7 @@ class DestDetails extends StatelessWidget {
                             ),
                             Icon(
                               Icons.location_pin,
-                              color: Colors.blue[900],
+                              color: Appthem().primarycolor,
                             ),
                             Text(data.district,
                                 style: themeData.textTheme.bodyText2),
@@ -113,7 +114,7 @@ class DestDetails extends StatelessWidget {
                           "200\$",
                           style: TextStyle(
                               fontSize: 24.sp,
-                              color: Colors.black87,
+                              color: Appthem().black,
                               fontWeight: FontWeight.bold),
                         ),
                         Obx(
@@ -142,7 +143,7 @@ class DestDetails extends StatelessWidget {
                                             ? "Delete"
                                             : "Add",
                                         style: TextStyle(
-                                          color: Colors.white,
+                                          color: Appthem().buttonText,
                                           fontSize: 20.sp,
                                         )),
                                   ],

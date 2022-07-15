@@ -15,6 +15,7 @@ class MapTrack extends StatelessWidget {
   Widget build(BuildContext context) {
     final MapCont cont = Get.put(MapCont());
     return Scaffold(
+        backgroundColor: Appthem().background,
         body: Stack(
           children: [
             // MapboxMap(

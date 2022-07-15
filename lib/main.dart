@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 640),
       builder: (context) => GetMaterialApp(
+        darkTheme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
         title: 'App flutter',
         theme: ThemeData(
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         getPages: [
           GetPage(name: "/", 
           page: ()=>  SplashView(),
+          // page: ()=> RegisterPage(),
           binding: DashBoardBind()
           ),
         ],

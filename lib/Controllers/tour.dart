@@ -21,6 +21,14 @@ class TourCont extends GetxController {
     print(selected.length);
   }
 
+  List<int> getIDS() {
+    List<int> ids = [];
+    for (int x = 0; x < selected.length; x++) {
+      ids.add(selected[x].id);
+    }
+    return ids;
+  }
+
   search(Destinations x) {
     if (selected.contains(x)) {
       toggle.value = true;

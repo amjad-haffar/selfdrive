@@ -23,8 +23,8 @@ class Destiantionswidet extends StatelessWidget {
       padding: EdgeInsets.all(10.w),
       child: InkWell(
         onTap: () => {
-                  Get.to(() => DestDetails(), arguments: [itemdata, index]),
-                },
+          Get.to(() => DestDetails(), arguments: [itemdata, index]),
+        },
         child: Column(
           children: [
             Stack(
@@ -34,7 +34,9 @@ class Destiantionswidet extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16.r),
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.grey[400]!,
+                            // color: Colors.grey[400]!,
+                            color: Appthem().shadow,
+                            // color: Colors.grey[900]!,
                             blurRadius: 10,
                             spreadRadius: 3,
                             offset: Offset(0, 0))

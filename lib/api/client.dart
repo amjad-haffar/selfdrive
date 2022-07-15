@@ -46,7 +46,11 @@ class RequestDio {
       Response response = await dio.request(
         url,
         data: data,
-        options: Options(headers: headers, method: method),
+        options: Options(headers: headers, method: method,
+        // followRedirects: false,
+        //     // will not throw errors
+        //     validateStatus: (status) => true,
+            ),
       );
 
       print("getHttps() | response.statusCode");
@@ -65,7 +69,7 @@ class RequestDio {
       {
       String apiToken = '',
       }) async {
-    print(body.toString());
+    // print(body.toString());
     // apiToken ??= '';
     print(apiToken);
 

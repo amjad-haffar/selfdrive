@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:wings/Controllers/tour.dart';
 import 'package:wings/Models/Destinations.dart';
+import 'package:wings/api/Request.dart';
 import 'package:wings/api/mapboxhandler.dart';
 
 import '../../../main.dart';
@@ -15,6 +16,8 @@ class MapCont extends GetxController {
   // RxList<dynamic> carouseData = [].obs;
   int pageIndex = 0;
   late List<Widget> items;
+  Map namesWithCor = {};
+  int fullKilometers = 0;
 
   @override
   void onInit() {
@@ -31,12 +34,20 @@ class MapCont extends GetxController {
     map = cont;
   }
 
-  void getAllRoutes() {
+  void createNewOrder() async {
+    Map unsorted = getAllRoutes();
+    var getdata = await Request.sendRoutes(MapCont().namesWithCor,TourCont().getIDS());
+    fullKilometers = getdata["distance"];
+    List<int> sorted = getdata["Result"];
+    for(int i=0;i<sorted.length;i++){
+    }
+  }
+
+  Map getAllRoutes() {
     List<Destinations> tour = TourCont().selected;
     if (tour.isNotEmpty) {
       int x = 0;
       int y = 0;
-      Map namesWithCor = {};
       while (x < tour.length) {
         y = x;
         while (y < tour.length) {
@@ -52,8 +63,10 @@ class MapCont extends GetxController {
         }
         x = x + 1;
       }
+      return namesWithCor;
     } else {
       print("tour is empty");
+      return Map();
     }
   }
 

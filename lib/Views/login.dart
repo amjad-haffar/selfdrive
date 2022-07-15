@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/src/size_extension.dart';
 import 'package:get/get.dart';
-
-import 'package:wings/Controllers/login.dart';
+import 'package:wings/Controllers/signupcont.dart';
 import 'package:wings/Views/signup.dart';import 'package:wings/utils/constants.dart';
 import 'package:wings/utils/components/widgets.dart';
 
@@ -11,7 +10,7 @@ class LoginPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  final UsersLogin user = Get.put(UsersLogin());
+  final SignUpCont user = Get.put(SignUpCont());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,26 +34,15 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // addVerBox(100.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "T",
-                        style: TextStyle(color: Appthem().primarycolor, fontSize: 60.sp),
-                      ),
-                      Text(
-                        "yria",
-                        style: TextStyle(color: Colors.black, fontSize: 60.sp),
-                      ),
-                    ],
-                  ),
+                  Image.asset("assets/images/logo1.png",width: 220.w,),
                   Appthem().addVerBox(12.h),
                   Container(
                     height: 45.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.r),
-                        color: Appthem().formbackcolor),
+                        // color: Appthem().formbackcolor
+                        color: Color(0xffdfe5ed)
+                        ),
                     child: TextFormField(
                       controller: _emailController,
                       cursorColor: Colors.blue,
@@ -75,7 +63,9 @@ class LoginPage extends StatelessWidget {
                     height: 45.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16.r),
-                        color: Appthem().formbackcolor),
+                        // color: Appthem().formbackcolor
+                        color: Color(0xffdfe5ed)
+                        ),
                     child: TextFormField(
                       controller: _passwordController,
                       cursorColor: Colors.blue,

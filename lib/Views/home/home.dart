@@ -24,7 +24,8 @@ class _MyDashBoardState extends State<MyDashBoard> {
   Widget build(BuildContext context) {
     return GetBuilder<DashBoardCont>(builder: 
     (controller){
-      return Scaffold(
+      return Obx(()=>Scaffold(
+        // backgroundColor: Appthem().background,
         body: SafeArea(
           child: IndexedStack(
             index: controller.tabIndex,
@@ -33,7 +34,7 @@ class _MyDashBoardState extends State<MyDashBoard> {
         ),
         bottomNavigationBar: CustomAnimatedBottomBar(
         containerHeight: 60.h,
-        backgroundColor: Colors.white,
+        backgroundColor: Appthem().tabbarColor,
         selectedIndex: controller.tabIndex,
         showElevation: true,
         itemCornerRadius: 22.r,
@@ -65,7 +66,7 @@ class _MyDashBoardState extends State<MyDashBoard> {
             textAlign: TextAlign.center,
           ),
         ],
-        ));
+        )));
     });
   }
 }

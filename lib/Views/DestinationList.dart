@@ -19,6 +19,7 @@ class DestinationsPage extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Appthem().background,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -73,7 +74,8 @@ class DestinationsPage extends StatelessWidget {
             Container(
               height: 373.h,
               child: GetBuilder<DestListCrtl>(
-                builder: (_cont) => _cont.isLoading
+                builder: (_cont) => 
+                _cont.isLoading
                     ? buildSkelton()
                     : ListView.builder(
                         physics: AlwaysScrollableScrollPhysics(),
