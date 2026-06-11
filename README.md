@@ -33,32 +33,32 @@ and alson choosing the most efficiant route using Genetic Algorithm .
 
 # Screenshots
 ## Authentication Screen
-<img width="500" height="1000" alt="Tyria1" src="https://github.com/user-attachments/assets/d8bc7ac5-bb94-407a-b011-62cd48a33f4c" />
+<img width="400" height="800" alt="Tyria1" src="https://github.com/user-attachments/assets/d8bc7ac5-bb94-407a-b011-62cd48a33f4c" />
 
 ---
 ## Home Screen
-<img width="500" height="1000" alt="Tyria2" src="https://github.com/user-attachments/assets/1e2a5ba7-be5b-4df7-92a1-666b4ccfff5d" />
+<img width="400" height="800" alt="Tyria2" src="https://github.com/user-attachments/assets/1e2a5ba7-be5b-4df7-92a1-666b4ccfff5d" />
 
 ---
 
 ## Destination Details
-<img width="500" height="1000" alt="Tyria3" src="https://github.com/user-attachments/assets/ec77e53d-7c65-4d04-9a1e-11927b2d37d9" />
+<img width="400" height="800" alt="Tyria3" src="https://github.com/user-attachments/assets/ec77e53d-7c65-4d04-9a1e-11927b2d37d9" />
 
 
 ---
 
 ## Map & Navigation
 
-<img width="500" height="1000" alt="Tyria5" src="https://github.com/user-attachments/assets/24f4dd44-ab99-40d2-882a-33ea87e4fe46" />
+<img width="400" height="800" alt="Tyria5" src="https://github.com/user-attachments/assets/24f4dd44-ab99-40d2-882a-33ea87e4fe46" />
 
 ---
 
 ## Tour Management
-<img width="500" height="1000" alt="Tyria4" src="https://github.com/user-attachments/assets/f7b05fb2-66b1-4d0f-8992-876764788efa" />
+<img width="400" height="800" alt="Tyria4" src="https://github.com/user-attachments/assets/f7b05fb2-66b1-4d0f-8992-876764788efa" />
 
 ## Profile
 
-<img width="500" height="1000" alt="tyria6" src="https://github.com/user-attachments/assets/d3e19165-50b5-4ead-98a4-da83204524c7" />
+<img width="400" height="800" alt="tyria6" src="https://github.com/user-attachments/assets/d3e19165-50b5-4ead-98a4-da83204524c7" />
 
 ---
 
