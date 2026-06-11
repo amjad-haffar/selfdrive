@@ -8,7 +8,7 @@
 [![Flutter Map](https://img.shields.io/badge/Flutter_Map-1.0.0-green.svg)](https://pub.dev/packages/flutter_map)
 
 A Flutter mobile application designed to help users explore tourist destinations, discover attractions, and plan visits through an intuitive mobile experience,
-and alson choosing the most efficiant route using Genetic Algorithm .
+and also choosing the most efficiant route using Genetic Algorithm.
 
 ---
 
